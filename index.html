@@ -296,6 +296,8 @@
 
   <main class="main">
 
+<div id="dashboard-page" class="page-view">
+    
     <div class="topbar">
       <div>
         <h1>Good morning, <span id="user-name">Jennifer</span> 👋
@@ -364,7 +366,118 @@
       </div>
 
     </section>
+</div>
 
+<div id="projects-page" class="page-view" style="display: none;">
+
+  <div class="topbar">
+    <div>
+      <h1>My Projects</h1>
+      <p class="subtitle">Manage your projects and keep your work moving.</p>
+    </div>
+  </div>
+
+  <section class="projects">
+
+    <div class="projects-header">
+      <div>
+        <h2>All Projects</h2>
+        <p>4 active projects</p>
+      </div>
+
+      <button id="projects-create-button">+ Create Project</button>
+    </div>
+
+    <div class="project-row">
+      <div>
+        <strong>Website Redesign</strong>
+        <p>8 tasks remaining</p>
+      </div>
+      <span>In Progress</span>
+    </div>
+
+    <div class="project-row">
+      <div>
+        <strong>Mobile App Research</strong>
+        <p>3 tasks remaining</p>
+      </div>
+      <span>In Progress</span>
+    </div>
+
+    <div class="project-row">
+      <div>
+        <strong>Customer Portal</strong>
+        <p>1 task remaining</p>
+      </div>
+      <span>Review</span>
+    </div>
+
+    <div class="project-row">
+      <div>
+        <strong>Marketing Campaign</strong>
+        <p>5 tasks remaining</p>
+      </div>
+      <span>Planning</span>
+    </div>
+
+  </section>
+
+</div>
+
+<div id="tasks-page" class="page-view" style="display: none;">
+
+  <div class="topbar">
+    <div>
+      <h1>My Tasks</h1>
+      <p class="subtitle">Stay on top of your work and upcoming tasks.</p>
+    </div>
+  </div>
+
+  <section class="projects">
+
+    <div class="project-header">
+      <div>
+        <h2>Tasks</h2>
+        <p class="subtitle">12 tasks to complete</p>
+      </div>
+    </div>
+
+    <div class="project">
+      <div>
+        <strong>Review homepage wireframes</strong>
+        <p>Website Redesign</p>
+      </div>
+      <span>In Progress</span>
+    </div>
+
+    <div class="project">
+      <div>
+        <strong>Finalize user interview questions</strong>
+        <p>Mobile App Research</p>
+      </div>
+      <span>To Do</span>
+    </div>
+
+    <div class="project">
+      <div>
+        <strong>Review customer feedback</strong>
+        <p>Customer Portal</p>
+      </div>
+      <span>Review</span>
+    </div>
+
+    <div class="project">
+      <div>
+        <strong>Prepare campaign brief</strong>
+        <p>Marketing Campaign</p>
+      </div>
+      <span>Planning</span>
+    </div>
+
+  </section>
+
+</div>
+    
   </main>
 
 </div>
@@ -383,6 +496,28 @@
       });
 
       this.classList.add("active");
+
+const dashboardPage = document.getElementById("dashboard-page");
+const projectsPage = document.getElementById("projects-page");
+
+const tasksPage = document.getElementById("tasks-page");
+      
+if (this.id === "dashboard-nav") {
+  dashboardPage.style.display = "block";
+  projectsPage.style.display = "none";
+  tasksPage.style.display = "none";
+}
+
+if (this.id === "projects-nav") {
+  dashboardPage.style.display = "none";
+  projectsPage.style.display = "block";
+  tasksPage.style.display = "none";
+}
+      if (this.id === "tasks-nav") {
+  dashboardPage.style.display = "none";
+  projectsPage.style.display = "none";
+  tasksPage.style.display = "block";
+}
     });
   });
 </script>

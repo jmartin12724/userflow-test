@@ -686,6 +686,13 @@ if (this.id === "projects-nav") {
   const nameInput = document.getElementById("name-input");
   const loginScreen = document.getElementById("login-screen");
 
+const navigationEntry = performance.getEntriesByType("navigation")[0];
+
+if (navigationEntry && navigationEntry.type === "reload") {
+  userflow.reset();
+  localStorage.removeItem("tasklyUserName");
+}
+    
   function signInToTaskly() {
     const name = nameInput.value.trim();
 
@@ -694,14 +701,25 @@ if (this.id === "projects-nav") {
       return;
     }
 
-    const userId =
-      "taskly-demo-" +
-      name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    
+   // Create a fresh demo session ID every time the page reloads
+const demoSessionId =
+  Date.now().toString() + "-" + Math.random().toString(36).slice(2, 8);
 
-    userflow.reset();
-    userflow.identify(userId, {
-      name: name
-    });
+const userId =
+  "taskly-demo-" +
+  name.toLowerCase().replace(/[^a-z0-9]+/g, "-") +
+  "-" +
+  demoSessionId;
+
+// Forget the previously identified browser user/session
+userflow.reset();
+
+// Identify this login as a completely fresh Taskly demo user
+userflow.identify(userId, {
+  name: name,
+  signed_up_at: new Date().toISOString()
+});
 
     loginScreen.style.display = "none";
 document.getElementById("user-name").textContent = name;

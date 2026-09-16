@@ -359,6 +359,33 @@
   font-weight: 600;
 }
 
+    .task-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 18px 0 22px;
+}
+
+.task-filter {
+  border: 1px solid #e2e2ea;
+  background: white;
+  color: #555566;
+  padding: 9px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.task-filter:hover {
+  background: #f7f6fb;
+}
+
+.task-filter.active {
+  background: #6256a5;
+  border-color: #6256a5;
+  color: white;
+}
     
   </style>
 </head>
@@ -687,6 +714,29 @@ document.getElementById("user-name").textContent = name;
       signInToTaskly();
     }
   });
+    document.querySelectorAll(".task-filter").forEach(function(button) {
+  button.addEventListener("click", function() {
+    document.querySelectorAll(".task-filter").forEach(function(btn) {
+      btn.classList.remove("active");
+    });
+
+    this.classList.add("active");
+
+    const filter = this.dataset.filter;
+
+    document.querySelectorAll("#tasks-page .project").forEach(function(task) {
+      const status = task.querySelector("span").textContent
+        .toLowerCase()
+        .replace(/\s+/g, "-");
+
+      if (filter === "all" || status === filter) {
+        task.style.display = "flex";
+      } else {
+        task.style.display = "none";
+      }
+    });
+  });
+});
 </script>
 </body>
 </html>

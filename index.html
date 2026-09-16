@@ -698,6 +698,7 @@ if (this.id === "projects-nav") {
       "taskly-demo-" +
       name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
+    userflow.reset();
     userflow.identify(userId, {
       name: name
     });
